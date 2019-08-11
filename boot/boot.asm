@@ -16,7 +16,7 @@ KERNEL_OFFSET equ 0x1000
 %include "./boot/screenout.asm"
 %include "./boot/diskio.asm"
 %include "./boot/keyboard.asm"
-%include "./boot/32b-gtp.asm"
+%include "./boot/32b-gdt.asm"
 %include "./boot/32b-print.asm"
 %include "./boot/32b-switch.asm"
 
