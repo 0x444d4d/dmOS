@@ -1,25 +1,37 @@
 #define NULL 0x00
 
-#include "definitions.h"
-#include "../drivers/ports.h"
-#include "stdout.h"
-
 void itos( int value, char* string );
 
+#include "definitions.h"
+#include "../drivers/ports.h"
+#include "../drivers/vga.h"
+#include "../drivers/time.h"
+
+
 void main () {
-  char bar[10] = "======\0";
-  char helloworld[50] = "dmOS\0";
-  char pressEnter[50] = "Press Enter to continue\0";
+    char bar[10] = "======\0";
+    char helloworld[50] = "dmOS\0";
+    char pressEnter[50] = "Press Enter to continue\0";
+    char second[4] = "NaN";
+    time_date time_s;
+    unsigned char test = 21;
 
-  initVideo(); //Initialize VGA output;
+    initVideo(); //Initialize VGA output;
 
-  printString( bar, 37, 11 );
-  printString( helloworld, 38, 12 );
-  printString( bar, 37, 13 );
-  printString( pressEnter, 0, 0 );
+    printString( bar, 37, 11 );
+    printString( helloworld, 38, 12 );
+    printString( bar, 37, 13 );
+    printString( pressEnter, 0, 0 );
 
-  
-  set_cursor( 27, 15 );
+    while( 1 ) {
+        printString( pressEnter, 0, 1 );
+        ++pressEnter[0];
+        get_time( time_s );
+        itos( time_s.second, second );
+        printString( second, 39, 16 );
+    }
+
+    set_cursor( 23, 15 );
 
 }
 
