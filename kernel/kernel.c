@@ -28,7 +28,8 @@ void main () {
         itos( time_s.second, second );
         printString( second, 39, 16 );
         printString( "Valor de second: \0", 0, 17 );
-        printBinChar( time_s.second, 20, 17 );
+        print_binary_byte( time_s.second, 20, 17 );
+        print_binary_double( (unsigned)4, 20, 18 );
     }
 
     set_cursor( 23, 15 );

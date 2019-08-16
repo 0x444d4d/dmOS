@@ -44,7 +44,8 @@ void printString ( char string[], short unsigned x, short unsigned y ) {
     updateVideo();
 }
 
-void printBinChar( char value, unsigned char x, unsigned char y ) {
+
+void print_binary_byte( char value, unsigned char x, unsigned char y ) {
     char string[9] = "\0";
 
     string[0] = (value & 0x80) ? 49 : 48;
@@ -56,6 +57,54 @@ void printBinChar( char value, unsigned char x, unsigned char y ) {
     string[6] = (value & 0x02) ? 49 : 48;
     string[7] = (value & 0x01) ? 49 : 48;
     string[9] = '\0';
+
+    printString( string, x, y );
+}
+
+
+void print_binary_word( short value, unsigned char x, unsigned char y ) {
+    char string[17] = "\0";
+    unsigned char byte;
+    unsigned short i;
+
+    for ( i = 8; i >= 0; i -= 8 ) {
+        byte = value;
+        value = value >> 8;
+
+        string[0 + i] = (byte & 0x80) ? 49 : 48;
+        string[1 + i] = (byte & 0x40) ? 49 : 48;
+        string[2 + i] = (byte & 0x20) ? 49 : 48;
+        string[3 + i] = (byte & 0x10) ? 49 : 48;
+        string[4 + i] = (byte & 0x08) ? 49 : 48;
+        string[5 + i] = (byte & 0x04) ? 49 : 48;
+        string[6 + i] = (byte & 0x02) ? 49 : 48;
+        string[7 + i] = (byte & 0x01) ? 49 : 48;
+
+    }
+    string[16] = '\0';
+
+    printString( string, x, y );
+}
+
+void print_binary_double( int value, unsigned char x, unsigned char y ) {
+    char string[33] = "ERROR print_binary_double\0";
+    unsigned char byte;
+    short int j;
+
+    for ( j = 24; j >= 0; j -= 8 ) {
+        byte = value;
+        value = value >> 8;
+
+        string[0 + j] = (byte & 0x80) ? 49 : 48;
+        string[1 + j] = (byte & 0x40) ? 49 : 48;
+        string[2 + j] = (byte & 0x20) ? 49 : 48;
+        string[3 + j] = (byte & 0x10) ? 49 : 48;
+        string[4 + j] = (byte & 0x08) ? 49 : 48;
+        string[5 + j] = (byte & 0x04) ? 49 : 48;
+        string[6 + j] = (byte & 0x02) ? 49 : 48;
+        string[7 + j] = (byte & 0x01) ? 49 : 48;
+    }
+    string[32] = '\0';
 
     printString( string, x, y );
 }
