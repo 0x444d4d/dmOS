@@ -1,10 +1,12 @@
 #ifndef VGA
 #define VGA
+void clear ( void );
 void printChar( void );
 void updateVideo( void );
 void initVideo( void );
 void updateVideo( void );
-void printString( char string[],  short unsigned x, short unsigned y );
+void printString( char string[], unsigned char x, unsigned char y );
+void printBinChar( char value, unsigned char x, unsigned char y );
 short unsigned get_cursor( void );
 void set_cursor( unsigned char x, unsigned char y );
 #endif

@@ -14,6 +14,6 @@ typedef struct time_date {
 
 int time_update_in_progress( void );
 void delay( short unsigned seconds_to_wait );
-void get_time( time_date time_s );
+time_date get_time();
 
 #endif
