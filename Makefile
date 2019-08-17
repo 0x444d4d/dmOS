@@ -1,6 +1,6 @@
-C_SOURCES = $(wildcard kernel/*.c drivers/*.c)
+C_SOURCES = $(wildcard kernel/*.c drivers/*.c functions/*.c)
 
-HEADERS = $(wildcard kernel/*.h drivers/*.h)
+HEADERS = $(wildcard kernel/*.h drivers/*.h functions/*.h)
 
 # Nice syntax for file extension replacement
 

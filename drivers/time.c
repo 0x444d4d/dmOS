@@ -1,4 +1,6 @@
 #include "time.h"
+#include "ports.h"
+#include "../functions/conversion.h"
 
 int time_update_in_progress( void ) {
     write_byte_port( 0x70, 0x0A );
@@ -17,7 +19,7 @@ void delay( short unsigned seconds_to_wait ) {
     new_time_s = get_time();
 
     //If "seconds_to_wait" seconds have passed -> return;
-    while ((( time_s.second + seconds_to_wait ) % 60 ) < new_time_s.second) {
+    while ((( time_s.second + seconds_to_wait ) % 59 ) > new_time_s.second) {
         new_time_s = get_time();
     }
 }
@@ -29,7 +31,7 @@ time_date get_time( void ) {
     while ( time_update_in_progress() == 1 );
 
     write_byte_port( 0x70, 0x00 );
-    time_s.second = read_byte_port( 0x71 );
+    time_s.second = bcd_to_dec( read_byte_port( 0x71 ));
     write_byte_port( 0x70, 0x02 );
     time_s.minute = read_byte_port( 0x71 );
     write_byte_port( 0x70, 0x04 );
